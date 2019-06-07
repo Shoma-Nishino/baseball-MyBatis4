@@ -32,8 +32,9 @@
         </div>
         <div class="form-group" th:classappend="${#fields.hasErrors('marriage')}? has-error">
           <label class="control-label">結婚の有無</label>
-          <input class="form-control" type="radio" th:text="既婚" th:field="*{marriage}" th:value=true />
-          <input class="form-control" type="radio" th:text="未婚" th:field="*{marriage}" th:value=false />
+          <div th:each="item : ${radioMarriage}">
+          	<input type="radio" name="radioMarrige" th:text="${item.key}" th:value="${item.value}" th:field="*{marriage}"></input>
+          </div>
           <span class="text-danger" th:if="${#fields.hasErrors('marriage')}" th:errors="*{marriage}"></span>
         </div>
         <button class="btn btn-default" type="submit">作成</button>
